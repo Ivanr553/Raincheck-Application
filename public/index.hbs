@@ -1,0 +1,20 @@
+<h1>Welcome to my raincheck application</h1>
+
+<h3>Enter Raincheck here:</h3>
+<form action="/enter" method="POST">
+  <input type="string" name="name" placeholder="name" />
+  <input type="number" name="sku" placeholder="sku" />
+  <input type="string" name="item" placeholder="item" />
+  <input type="number" name="phone" placeholder="phone number" />
+  <button type="submit">Submit</button>
+</form>
+
+<br><br>
+
+<h3>Find Raincheck by Name</h3>
+<form action="/find" method="POST">
+  <input type="string" name="name" placeholder="name" />
+  <button type="submit">Submit</button>
+</form>
+
+{{list}}
