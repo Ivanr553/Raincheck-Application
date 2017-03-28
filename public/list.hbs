@@ -1,6 +1,34 @@
 <h1>List of Users with Name: {{name}}</h1>
-<ul>
-  {{#each list }}
-  <li>{{this}}</li>
-  {{/each}}
-</ul>
+<table>
+  <tr>
+    <th>
+    </th>
+    {{#each order}}
+    <td>{{this}}</td>
+    {{/each}}
+  </tr>
+  <tr>
+    <th>Name</th>
+    {{#each names}}
+      <td>{{this}}</td>
+    {{/each}}
+  </tr>
+  <tr>
+    <th>Sku</th>
+    {{#each sku}}
+      <td>{{this}}</td>
+    {{/each}}
+  </tr>
+  <tr>
+    <th>Item</th>
+    {{#each item}}
+      <td>{{this}}</td>
+    {{/each}}
+  </tr>
+  <tr>
+    <th>Phone</th>
+    {{#each phone}}
+    <td>{{this}}</td>
+    {{/each}}
+  </tr>
+</table>

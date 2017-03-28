@@ -6,7 +6,6 @@ const db = mongoose.connection;
 const config = require("./config/database");
 const router = express.Router();
 const bodyParser = require("body-parser");
-//const engines = require("consolidate");
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');

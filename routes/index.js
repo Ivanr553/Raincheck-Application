@@ -17,10 +17,29 @@ router.post("/find", (req,res) => {
       res.send("Found none");
     }
     else {
-      const injection = enter.map((obj) => {
-        return obj = obj.name;
+      let nameli = [];
+      let skuli = [];
+      let itemli = [];
+      let phoneli = [];
+      let orders = [];
+        for(let x = 1; x < enter.length+1; x++) {
+          orders.push("Order " + x);
+        }
+      let enterList = enter.forEach((obj) => {
+        nameli.push(JSON.stringify(obj.name));
+        skuli.push(JSON.stringify(obj.sku));
+        itemli.push(JSON.stringify(obj.item));
+        phoneli.push(JSON.stringify(obj.phone));
       })
-    res.render("list", { list: injection});
+      nameli = nameli.map((x) => {
+        x = x.replace(/"/g,"");
+        return x
+      })
+      itemli = itemli.map((x) => {
+        x = x.replace(/"/g,"");
+        return x
+      })
+    res.render("list", { names: nameli, sku: skuli, item: itemli, name: postName, phone: phoneli, order: orders});
     }
 })
 });
