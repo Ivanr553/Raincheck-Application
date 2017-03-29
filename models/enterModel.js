@@ -4,8 +4,8 @@ const router = express.Router();
 
 let enterSchema = mongoose.Schema({
   name: String,
-  sku: Number,
-  item: String,
+  skus: [Number],
+  items: [String],
   phone: Number
 });
 

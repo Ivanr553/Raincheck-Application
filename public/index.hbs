@@ -1,18 +1,29 @@
 <h1>Welcome to my raincheck application</h1>
 
 <h3>Enter Raincheck here:</h3>
-<form action="/enter" method="POST">
+<form action="/enter" method="POST" id="enter">
   <input type="string" name="name" placeholder="name" />
-  <input type="number" name="sku" placeholder="sku" />
-  <input type="string" name="item" placeholder="item" />
   <input type="number" name="phone" placeholder="phone number" />
-  <button type="submit">Submit</button>
+  <br><br>
+  <span>Items</span>
+  <br>
+  <input type="number" name="skus[0]" placeholder="sku" />
+  <input type="string" name="items[0]" placeholder="item" /><br>
+  <button type="submit" id="enterSub">Submit</button>
 </form>
+
+<button name="add" onclick="addInputs()">+</button>
 
 <br><br>
 
 <h3>Find Raincheck by Name</h3>
-<form action="/find" method="POST">
+<form action="/find" method="POST" id="find">
+  <input type="string" name="name" placeholder="name" />
+  <button type="submit">Submit</button>
+</form>
+
+<h3>Delete Raincheck by Name</h3>
+<form action="/delete" method="POST" id="delete">
   <input type="string" name="name" placeholder="name" />
   <button type="submit">Submit</button>
 </form>

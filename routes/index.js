@@ -17,31 +17,67 @@ router.post("/find", (req,res) => {
       res.send("Found none");
     }
     else {
-      let nameli = [];
-      let skuli = [];
-      let itemli = [];
-      let phoneli = [];
       let orders = [];
-        for(let x = 1; x < enter.length+1; x++) {
-          orders.push("Order " + x);
-        }
+      let items = [];
       let enterList = enter.forEach((obj) => {
-        nameli.push(JSON.stringify(obj.name));
-        skuli.push(JSON.stringify(obj.sku));
-        itemli.push(JSON.stringify(obj.item));
-        phoneli.push(JSON.stringify(obj.phone));
-      })
-      nameli = nameli.map((x) => {
-        x = x.replace(/"/g,"");
-        return x
-      })
-      itemli = itemli.map((x) => {
-        x = x.replace(/"/g,"");
-        return x
-      })
-    res.render("list", { names: nameli, sku: skuli, item: itemli, name: postName, phone: phoneli, order: orders});
+        let order = [];
+        let item = [];
+        order.push("Order " + (enter.indexOf(obj)+ 1))
+        order.push(JSON.stringify(obj.name).replace(/"/g, ""));
+        order.push(JSON.stringify(obj.phone));
+        for(let j = 0; j < obj.skus.length; j++) {
+          if(j === 0) {
+            order.push(JSON.stringify(obj.skus[j]));
+            order.push(JSON.stringify(obj.items[j]).replace(/"/g, ""));
+            orders.push(order);
+          }
+          else {
+            order = [];
+            order.push("");
+            order.push("");
+            order.push("");
+            order.push(JSON.stringify(obj.skus[j]));
+            order.push(JSON.stringify(obj.items[j]).replace(/"/g, ""));
+            orders.push(order);
+          }
+        }
+      });
+    res.render("list", {orders: orders, name: postName});
     }
 })
+});
+
+router.post("/delete", (req, res) => {
+  const postName = req.body.name;
+  Enter.find({name: postName}, (err, enter) => {
+    if (err) {res.send(err)};
+    if(enter.length === 0) {
+      res.send("Found none");
+    }
+    else {
+      res.send(enter)
+    }
+  });
+  /*
+  Enter.findOneAndRemove({name: postName}, (err, enter) => {
+    if(err) throw err;
+    if(!enter) res.send(postName + " not found");
+    if(enter.length > 1) {
+      res.send(enter);
+    }
+    else {
+      console.log(enter.postName)
+      res.send("deleted: " + enter.name)
+    }
+  })
+} )
+
+Enter.find({name: postName}, (err, enter) => {
+  if (err) {res.send(err)};
+  if(enter.length === 0) {
+    res.send("Found none");
+  }
+*/
 });
 
 module.exports = router;
