@@ -9,8 +9,15 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <style>
+    * {
+      font-family: Times;
+    }
       table, th, td {
         border: solid 1px black;
+        padding: 0.3vh;
+      }
+      table {
+        margin-left: 2vh;
       }
       body {
         padding: 3vh;
@@ -19,6 +26,13 @@
         margin: 0.5vh;
         margin-left: 0;
         width: 176px;
+      }
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
       }
       .sku {
         margin-right: 0.8vh;

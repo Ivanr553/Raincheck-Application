@@ -1,5 +1,32 @@
 <h1>Welcome to my raincheck application</h1>
 
+<br>
+
+{{#if orders}}
+<h1>List of Rainchecks</h1>
+<table>
+  <tr>
+    <th>
+    </th>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>SKU</th>
+    <th>Item</th>
+  </tr>
+
+  {{#each orders}}
+  <tr>
+    {{#each this}}
+    <td>{{this}}</td>
+    {{/each}}
+  </tr>
+  {{/each}}
+
+</table>
+{{/if}}
+
+<br><br>
+
 <h3>Enter Raincheck here:</h3>
 <form action="/enter" method="POST" id="enter">
   <input type="string" name="name" placeholder="name" />
@@ -13,6 +40,8 @@
 </form>
 
 <button name="add" onclick="addInputs()">+</button>
+
+
 
 <br><br>
 
