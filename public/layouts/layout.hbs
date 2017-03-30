@@ -107,8 +107,8 @@ function addInputs(){
 
   //delete functionality
     function deleteElement(el) {
-      let postName = el.parentElement.parentElement.children[1].innerHTML.toString()
-      let order = {phone: phoneName}
+      let postPhone = el.parentElement.parentElement.children[2].innerHTML.toString()
+      let order = {phone: postPhone}
 
       $.ajax({
         type: "POST",
