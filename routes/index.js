@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
     if(!enter) {
       res.render("index");
     }
-    if(enter.length === 0) {
+    if(enter && enter.length === 0) {
       res.render("index");
     }
     else {
@@ -40,11 +40,46 @@ router.get('/', function(req, res, next) {
           }
         }
       });
+      console.log(enter)
     res.render("index", {orders: orders});
     }
 })
 });
 
+
+router.post("/enter", (req, res) => {
+  function checkEmpty(skus, items) {
+    for(let i = 0; i < skus.length; i++) {
+      if(skus[i] === "" || skus[i] === undefined || skus[i] === null) {
+        return false;
+      }
+    }
+    for(let i = 0; i < items.length; i++) {
+      if(items[i] === "" || items[i] === undefined || items[i] === null) {
+        return false;
+      }
+    }
+    return true;
+  }
+  if(!checkEmpty(req.body.skus, req.body.items)) {
+    res.send("Fill in all fields");
+  }
+  else {
+  let newEnter = new Enter({
+    name: req.body.name,
+    skus: req.body.skus,
+    items: req.body.items,
+    phone: req.body.phone
+  });
+
+  newEnter.save(newEnter, (err) => {
+    if (err) throw err;
+    res.redirect("..");
+  })
+}});
+
+
+/* For searching for rainchecks, will consider adding this in later
 router.post("/find", (req,res) => {
   const postName = req.body.name;
 
@@ -87,6 +122,7 @@ router.post("/find", (req,res) => {
 })
 });
 
+*/
 router.post("/delete", (req, res) => {
   const postName = req.body.name;
   /*Enter.find({name: postName}, (err, enter) => {
@@ -106,8 +142,7 @@ router.post("/delete", (req, res) => {
       res.send(enter);
     }
     else {
-      console.log(enter.postName)
-      res.send("deleted: " + enter.name)
+      res.redirect("..")
     }
   })
 });

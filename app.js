@@ -42,9 +42,6 @@ app.use(cookieParser());
 app.set('views', path.join(__dirname, '/public'));
 app.set('view engine', 'hbs');
 
-//enter route
-app.use("/enter", require("./routes/enterRoute"));
-
 //static directory
 app.use("/", index);
 

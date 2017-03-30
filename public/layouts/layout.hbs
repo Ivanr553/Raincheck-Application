@@ -5,9 +5,9 @@
     <link rel='stylesheet' href='public/layouts/scss/main.scss' />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <style>
     * {
       font-family: Times;
@@ -15,12 +15,18 @@
       table, th, td {
         border: solid 1px black;
         padding: 0.3vh;
+        font-size: 2vh;
+        text-align: center;
       }
       table {
         margin-left: 2vh;
       }
       body {
         padding: 3vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
       input {
         margin: 0.5vh;
@@ -43,9 +49,11 @@
     {{{body}}}
   </body>
   <script style="text/javascript">
-  let i = 0;
 
-  function addInputs() {
+
+function addInputs(){
+  let i = 0;
+  (function add() {
     let sku = document.createElement("input");
     let item = document.createElement("input");
     let br = document.createElement("br");
@@ -66,6 +74,55 @@
     enter.insertBefore(br, submit);
 
     i++;
-  }
+  })()
+}
+
+
+//Adding the delete buttons into the table
+  (function addDelete() {
+    let childElements = document.getElementById("main-table").children[0].children;
+
+    function Del() {
+      let delElement = document.createElement("button");
+      delElement.setAttribute("onClick", "deleteElement(this)");
+      delElement.innerHTML = "Delete";
+      return delElement;
+    }
+
+    for(let i = 0; i < childElements.length; i++) {
+      if(i != 0) {
+        if(childElements[i].children[0].innerHTML != "") {
+          let cell = childElements[i].insertCell();
+          cell.setAttribute("class", "deleteCell")
+        }
+      }
+    }
+    let cells = document.getElementsByClassName("deleteCell");
+    for(let i = 0; i < cells.length; i++) {
+      window["deleteCell" + i] = new Del();
+      cells[i].append(window["deleteCell" + i])
+    }
+
+  })()
+
+  //delete functionality
+    function deleteElement(el) {
+      let postName = el.parentElement.parentElement.children[1].innerHTML.toString()
+      let order = {name: postName}
+
+      $.ajax({
+        type: "POST",
+        url: "/delete",
+        data: order,
+        success: function() {
+          window.location.reload(true);
+        },
+        error: function() {
+          console.log("error");
+        }
+      })
+
+    }
+
   </script>
 </html>
