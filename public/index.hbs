@@ -1,6 +1,6 @@
 <div>
   <h1>Welcome to my raincheck application</h1>
-  
+
 {{#if orders}}
 <br>
 <h1>List of Active Rainchecks</h1>
@@ -42,9 +42,9 @@
 
 <button name="add" onclick="addInputs()">Add Item</button>
 
-<h3>Delete Raincheck by Name</h3>
+<h3>Delete Raincheck by Phone Number</h3>
 <form action="/delete" method="POST" id="delete">
-  <input type="string" name="name" placeholder="name" />
+  <input type="number" name="phone" placeholder="phone" />
   <button type="submit">Submit</button>
 </form>
 </div>

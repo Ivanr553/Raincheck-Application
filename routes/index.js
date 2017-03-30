@@ -124,7 +124,7 @@ router.post("/find", (req,res) => {
 
 */
 router.post("/delete", (req, res) => {
-  const postName = req.body.name;
+  const postPhone = req.body.phone;
   /*Enter.find({name: postName}, (err, enter) => {
     if (err) {res.send(err)};
     if(enter.length === 0) {
@@ -135,9 +135,9 @@ router.post("/delete", (req, res) => {
     }
   });*/
 
-  Enter.findOneAndRemove({name: postName}, (err, enter) => {
+  Enter.findOneAndRemove({phone: postPhone}, (err, enter) => {
     if(err) throw err;
-    if(!enter) res.send(postName + " not found");
+    if(!enter) res.send(postPhone + " not found");
     if(enter.length > 1) {
       res.send(enter);
     }
