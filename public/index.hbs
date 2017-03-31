@@ -29,6 +29,7 @@
 <br><br>
 
 <h3>Enter Raincheck here:</h3>
+<div class="enter-container">
 <form action="/enter" method="POST" id="enter">
   <input type="string" name="name" placeholder="name" />
   <input type="number" name="phone" placeholder="phone number" />
@@ -39,9 +40,10 @@
   <input type="string" name="items[0]" placeholder="item" /><br>
   <button type="submit" id="enterSub">Submit</button>
 </form>
-
-<button name="add" onclick="addInputs()">Add Item</button>
-
+<button name="add" onclick="addInputs()" id="addItem">Add Item</button>
+<br>
+</div>
+<br>
 <h3>Delete Raincheck by Phone Number</h3>
 <form action="/delete" method="POST" id="delete">
   <input type="number" name="phone" placeholder="phone" />
