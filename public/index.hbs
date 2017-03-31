@@ -38,11 +38,11 @@
   <br>
   <input type="number" name="skus[0]" placeholder="sku" />
   <input type="string" name="items[0]" placeholder="item" /><br>
-  <button type="submit" id="enterSub">Submit</button>
+  <input type="string" name="notes" placeholder="notes"  id="notes"/>
+  <br><button type="submit" id="enterSub">Submit</button>
 </form>
-<button name="add" onclick="addInputs()" id="addItem">Add Item</button>
-<br>
 </div>
+<button name="add" onclick="addInputs()" id="addItem">Add Item</button>
 <br>
 <h3>Delete Raincheck by Phone Number</h3>
 <form action="/delete" method="POST" id="delete">

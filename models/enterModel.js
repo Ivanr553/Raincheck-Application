@@ -6,7 +6,8 @@ let enterSchema = mongoose.Schema({
   name: String,
   skus: [Number],
   items: [String],
-  phone: Number
+  phone: Number,
+  notes: String
 });
 
 let Enter = module.exports = mongoose.model("Enter", enterSchema);

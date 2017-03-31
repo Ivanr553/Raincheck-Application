@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
       let orders = [];
       let items = [];
       let enterList = enter.forEach((obj) => {
+        console.log(obj)
         let order = [];
         let item = [];
         order.push((enter.indexOf(obj)+ 1)+ ".")
@@ -27,6 +28,7 @@ router.get('/', function(req, res, next) {
           if(j === 0) {
             order.push(JSON.stringify(obj.skus[j]));
             order.push(JSON.stringify(obj.items[j]).replace(/"/g, ""));
+            order.push(JSON.stringify(obj.notes).replace(/"/g, ""));
             orders.push(order);
           }
           else {
@@ -40,7 +42,6 @@ router.get('/', function(req, res, next) {
           }
         }
       });
-      console.log(enter)
     res.render("index", {orders: orders});
     }
 })
@@ -69,7 +70,8 @@ router.post("/enter", (req, res) => {
     name: req.body.name,
     skus: req.body.skus,
     items: req.body.items,
-    phone: req.body.phone
+    phone: req.body.phone,
+    notes: req.body.notes
   });
 
   newEnter.save(newEnter, (err) => {

@@ -47,7 +47,7 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: center;
+        justify-content: left;
       }
       #enter {
         margin: auto;
@@ -56,8 +56,14 @@
       }
       #addItem {
         margin-right: auto;
-        margin-top: auto;
-        margin-bottom: 5.8%;
+        margin-top: 0.2vh;
+      }
+      .notes {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border: none;
       }
     </style>
   </head>
@@ -74,20 +80,20 @@ function addInputs(){
     let item = document.createElement("input");
     let br = document.createElement("br");
     let enter = document.getElementById("enter");
-    let submit = document.getElementById("enterSub");
+    let notes = document.getElementById("notes");
 
     sku.setAttribute("type", "number");
     sku.setAttribute("name", "skus["+(i+1)+"]");
     sku.setAttribute("placeholder", "sku");
     sku.className += "sku";
-    enter.insertBefore(sku, submit);
+    enter.insertBefore(sku, notes);
 
     item.setAttribute("type", "string");
     item.setAttribute("name", "items["+(i+1)+"]");
     item.setAttribute("placeholder", "item");
-    enter.insertBefore(item, submit)
+    enter.insertBefore(item, notes)
 
-    enter.insertBefore(br, submit);
+    enter.insertBefore(br, notes);
 
     i++;
   })()
@@ -109,7 +115,8 @@ function addInputs(){
       if(i != 0) {
         if(childElements[i].children[0].innerHTML != "") {
           let cell = childElements[i].insertCell();
-          cell.setAttribute("class", "deleteCell")
+          cell.setAttribute("class", "deleteCell");
+          childElements[i].children[5].setAttribute("onclick", "turnTextArea(this)");
         }
       }
     }
@@ -138,6 +145,33 @@ function addInputs(){
         }
       })
 
+    }
+
+    //onClick textArea
+    function turnTextArea(el) {
+      if(el.children.length === 0){
+      let textArea = document.createElement("textarea");
+      let data = el.innerHTML;
+      let button = document.createElement("button");
+
+      button.setAttribute("onClick", "commitNotes(this)")
+      button.innerHTML = "Commit";
+      button.style.margin = "auto";
+
+      el.innerHTML = "";
+      el.className = "notes"
+
+      textArea.innerHTML = data;
+
+      el.append(textArea);
+      el.append(button);
+    }
+    }
+
+    //textArea submit feature
+    function commitNotes(el) {
+      let data = el.parentElement.children[0].innerHTML;
+      console.log(data);
     }
 
   </script>
