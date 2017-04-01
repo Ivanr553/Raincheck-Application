@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require("mongoose");
 const Enter = require("../models/enterModel");
+const helper = require('sendgrid').mail;
+const sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -162,5 +164,29 @@ router.post("/update", (req, res) => {
     })
   })
 });
+
+
+router.get("/v3/mail/send", (req, res) => {
+
+let from_email = new helper.Email("test@example.com");
+let to_email = new helper.Email("ivanr553@gmail.com");
+let subject = "Sending with SendGrid is Fun";
+let content = new helper.Content("text/plain", "and easy to do anywhere, even with Node.js");
+let mail = new helper.Mail(from_email, subject, to_email, content);
+
+let request = sg.emptyRequest({
+  method: 'POST',
+  path: '/v3/mail/send',
+  body: mail.toJSON()
+});
+
+sg.API(request, function(error, response) {
+  console.log(response.statusCode);
+  console.log(response.body);
+  console.log(response.headers);
+})
+
+})
+
 
 module.exports = router;
