@@ -17,9 +17,14 @@
         padding: 0.3vh;
         font-size: 2vh;
         text-align: center;
+        height: 8vh;
       }
       table {
         margin-left: 2vh;
+      }
+      textarea {
+        height: 90%;
+        resize: none;
       }
       body {
         padding: 3vh;
@@ -63,7 +68,9 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        border: none;
+        border-top: none;
+        border-right: none;
+        border-left: none;
       }
     </style>
   </head>
@@ -141,7 +148,7 @@ function addInputs(){
           window.location.reload(true);
         },
         error: function() {
-          console.log("error");
+          alert("eror");
         }
       })
 
@@ -170,8 +177,24 @@ function addInputs(){
 
     //textArea submit feature
     function commitNotes(el) {
-      let data = el.parentElement.children[0].innerHTML;
-      console.log(data);
+      let postNotes = el.parentElement.children[0].value;
+      let postPhone = el.parentElement.parentElement.children[2].innerHTML;
+      let update = {
+        phone: postPhone,
+        notes: postNotes
+      };
+
+      $.ajax({
+        type: "POST",
+        url: "/update",
+        data: update,
+        success: () => {
+          window.location.reload(true);
+        },
+        error: () => {
+          alert("error");
+        }
+      })
     }
 
   </script>

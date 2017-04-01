@@ -18,7 +18,6 @@ router.get('/', function(req, res, next) {
       let orders = [];
       let items = [];
       let enterList = enter.forEach((obj) => {
-        console.log(obj)
         let order = [];
         let item = [];
         order.push((enter.indexOf(obj)+ 1)+ ".")
@@ -146,6 +145,21 @@ router.post("/delete", (req, res) => {
     else {
       res.redirect("..")
     }
+  })
+});
+
+router.post("/update", (req, res) => {
+  const postNotes = req.body.notes;
+  const postPhone = req.body.phone*1;
+
+  Enter.findOne({phone: postPhone}, (err, enter) => {
+    if(err) throw err;
+    enter.notes = postNotes;
+    console.log(enter);
+    enter.save((err, updatedEnter) => {
+      if(err) throw err;
+      res.redirect("..");
+    })
   })
 });
 
