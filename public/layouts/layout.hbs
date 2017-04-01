@@ -2,13 +2,78 @@
 <html>
   <head>
     <title>Raincheck Application</title>
-    <link rel='stylesheet' href="https://rawgit.com/Ivanr553/Raincheck-Application/master/public/scss/main.scss" />
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <link rel="icon" href="raincheck/public/layouts/scss/images/icon.jpg">
+    <style>
+    * {
+      font-family: Times;
+    }
+    table, th, td {
+        border: solid 1px black;
+        padding: 0.3vh;
+        font-size: 2vh;
+        text-align: center;
+        height: 8vh;
+    }
+    table {
+        margin-left: 2vh;
+    }
+    textarea {
+        height: 90%;
+        resize: none;
+    }
+    body {
+        padding: 3vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    input {
+        margin: 0.5vh;
+        margin-left: 0;
+        width: 176px;
+    }
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+    }
+    .sku {
+        margin-right: 0.8vh;
+    }
+    .enter-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+    }
+    #enter {
+        margin: auto;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    #addItem {
+        margin-right: auto;
+        margin-top: 0.2vh;
+    }
+    .notes {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+    }
+
+    </style>
   </head>
   <body>
     {{{body}}}
