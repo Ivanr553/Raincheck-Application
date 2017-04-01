@@ -1,58 +1,58 @@
 * {
   font-family: Times;
 }
-  table, th, td {
+table, th, td {
     border: solid 1px black;
     padding: 0.3vh;
     font-size: 2vh;
     text-align: center;
     height: 8vh;
-  }
-  table {
+}
+table {
     margin-left: 2vh;
-  }
-  textarea {
+}
+textarea {
     height: 90%;
     resize: none;
-  }
-  body {
+}
+body {
     padding: 3vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  input {
+}
+input {
     margin: 0.5vh;
     margin-left: 0;
     width: 176px;
-  }
-  input[type=number]::-webkit-inner-spin-button,
-  input[type=number]::-webkit-outer-spin-button {
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     margin: 0;
-  }
-  .sku {
+}
+.sku {
     margin-right: 0.8vh;
-  }
-  .enter-container {
+}
+.enter-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: left;
-  }
-  #enter {
+}
+#enter {
     margin: auto;
     margin-left: 0;
     margin-right: 0;
-  }
-  #addItem {
+}
+#addItem {
     margin-right: auto;
     margin-top: 0.2vh;
-  }
-  .notes {
+}
+.notes {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -60,4 +60,4 @@
     border-top: none;
     border-right: none;
     border-left: none;
-  }
+}
