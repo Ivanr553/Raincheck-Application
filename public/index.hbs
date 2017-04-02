@@ -1,8 +1,13 @@
-<div>
-  <h1>Welcome to my raincheck application</h1>
+<div class="nav-bar">
+<h1>Raincheck Application</h1>
+</div>
+
+
+<div class="main-container">
 
 {{#if orders}}
 <br>
+<div class="table-container">
 <h1>List of Active Rainchecks</h1>
 <table id="main-table">
   <tr>
@@ -12,6 +17,7 @@
     <th>Phone</th>
     <th>SKU</th>
     <th>Item</th>
+    <th>Notes</th>
     <th></th>
   </tr>
 
@@ -25,7 +31,7 @@
 
 </table>
 {{/if}}
-
+</div>
 <br><br>
 
 <h3>Enter Raincheck here:</h3>

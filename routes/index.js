@@ -67,6 +67,9 @@ router.post("/enter", (req, res) => {
     res.send("Fill in all fields");
   }
   else {
+    if(req.body.notes === "") {
+      req.body.notes = " ";
+    }
   let newEnter = new Enter({
     name: req.body.name,
     skus: req.body.skus,

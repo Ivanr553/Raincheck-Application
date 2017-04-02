@@ -17,26 +17,38 @@
         padding: 0.3vh;
         font-size: 2vh;
         text-align: center;
-        height: 8vh;
+        height: 7vh;
+        background-color: white;
+    }
+    th {
+      background-color: rgba(0, 0, 0, 0.07);
     }
     table {
-        margin-left: 2vh;
+        margin-left: 1vh;
+        margin-top: 2vh;
     }
     textarea {
         height: 90%;
         resize: none;
     }
     body {
-        padding: 3vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(234, 247, 252);
+    }
+    button {
     }
     input {
         margin: 0.5vh;
         margin-left: 0;
-        width: 176px;
+        width: 17vmin;
+        height: 3vmin;
+        padding: 0.3vmin;
+        font-size: 1.8vmin;
+        border: none;
     }
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
@@ -45,6 +57,37 @@
         appearance: none;
         margin: 0;
     }
+
+    .nav-bar {
+      width: 100vw;
+      height: 8vh;
+      background-color: grey;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .nav-button {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      float: right;
+      margin-top: 2vh;
+      font-size: 3vmin;
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .table-container {
+      align-items: left;
+    }
+
     .sku {
         margin-right: 0.8vh;
     }
@@ -59,9 +102,9 @@
         margin-left: 0;
         margin-right: 0;
     }
-    #addItem {
-        margin-right: auto;
-        margin-top: 0.2vh;
+    #enter-sub {
+       margin: auto;
+       margin-right: 0;
     }
     .notes {
         display: flex;
@@ -71,6 +114,9 @@
         border-top: none;
         border-right: none;
         border-left: none;
+    }
+    .notes-cell {
+      cursor: pointer;
     }
 
     </style>
@@ -108,8 +154,8 @@ function addInputs(){
 }
 
 
-//Adding the delete buttons into the table
-  (function addDelete() {
+//Adding the additional cells (notes and delete) into the table
+  (function addCells() {
     let childElements = document.getElementById("main-table").children[0].children;
 
     function Del() {
@@ -125,6 +171,7 @@ function addInputs(){
           let cell = childElements[i].insertCell();
           cell.setAttribute("class", "deleteCell");
           childElements[i].children[5].setAttribute("onclick", "turnTextArea(this)");
+          childElements[i].children[5].className += "notes-cell";
         }
       }
     }
