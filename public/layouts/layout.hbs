@@ -251,7 +251,7 @@ function addInputs(){
 
     //add additional row in table for addiung raincheck
 
-    let grc = 1;
+    let grc = 1; //global row count if I will allow mltiple rainchecks to be submitted
 
     function addRow(element) {
       let table = document.getElementById("main-table");
@@ -303,7 +303,7 @@ function addInputs(){
         return input;
       }
 
-      for(let i = 0; i < table.children[0].children[0].children.length; i++) {
+      for(let i = 0; i < table.children[0].children[0].children.length + 1; i++) {
         row.append(document.createElement("td"));
       }
       for(let i = 0; i < row.children.length; i++) {
@@ -333,6 +333,12 @@ function addInputs(){
           addButton.setAttribute("onclick", "enterRaincheck(this)");
           row.children[i].append(addButton)
         }
+        if(i === 7) {
+          let itemButton = document.createElement("button");
+          itemButton.setAttribute("onclick", "extraRow(this)");
+          itemButton.innerHTML = "Add Item";
+          row.children[i].append(itemButton);
+        }
       }
       row.setAttribute("id", "row " + grc);
       table.append(row);
@@ -349,6 +355,17 @@ function addInputs(){
       let newSku = parent.children[3].children[0].value*1;
       let newItem = parent.children[4].children[0].value;
       let newNotes = parent.children[5].children[0].value;
+
+      let table = parent.parentElement;
+      let newSkus = [];
+      let newItems = [];
+
+//find skus
+      for(let i = 2; i < table.children.length; i++) {
+        newSkus.push(table.children[i].children[3].children[0]);
+        newItems.push(table.children[i].children[4].children[0]);
+      }
+      return console.log(newSkus);
 
       let newEnter = {
         name: newName,
@@ -369,6 +386,29 @@ function addInputs(){
           alert("error");
         }
       })
+    }
+
+    //add aditional row for more items in table
+
+    function extraRow(el) {
+      let table = document.getElementById("main-table");
+      let row = document.createElement("tr");
+
+      for(let i = 0; i < table.children[0].children[0].children.length+1; i++) {
+        if(i === 7) {
+          let td = document.createElement("td");
+          let itemButton = document.createElement("button");
+          itemButton.setAttribute("onclick", "extraRow(this)");
+          itemButton.innerHTML = "Add Item";
+          td.append(itemButton)
+          row.append(td);
+        }
+        else {
+          row.append(document.createElement("td"));
+        }
+      }
+      table.append(row)
+      el.style.display = "none";
     }
 
   </script>
