@@ -87,6 +87,10 @@
     .table-container {
       align-items: left;
     }
+    .table-input {
+      height: 100%;
+      width: 100%;
+    }
 
     .sku {
         margin-right: 0.8vh;
@@ -245,17 +249,126 @@ function addInputs(){
       })
     }
 
-    //add additional row in table
-    function addRow() {
+    //add additional row in table for addiung raincheck
+
+    let grc = 1;
+
+    function addRow(element) {
       let table = document.getElementById("main-table");
       let row = document.createElement("tr");
-      function TD() {
-        return document.createElement("td");
+
+//constructor functions for input elements
+      function CreateNameInput(num) {
+        let input = document.createElement("input");
+        input.setAttribute("name", "name");
+        input.setAttribute("placeholder", "name");
+        input.setAttribute("id", "name " + num);
+        input.setAttribute("class", "table-input");
+        return input;
       }
+
+      function CreatePhoneInput(num) {
+        let input = document.createElement("input");
+        input.setAttribute("name", "phone");
+        input.setAttribute("placeholder", "phone");
+        input.setAttribute("id", "phone " + num);
+        input.setAttribute("class", "table-input");
+        return input;
+      }
+
+      function CreateSkuInput(num) {
+        let input = document.createElement("input");
+        input.setAttribute("name", "sku");
+        input.setAttribute("placeholder", "sku");
+        input.setAttribute("id", "sku " + num);
+        input.setAttribute("class", "table-input");
+        return input;
+      }
+
+      function CreateItemInput(num) {
+        let input = document.createElement("input");
+        input.setAttribute("name", "item");
+        input.setAttribute("placeholder", "item");
+        input.setAttribute("id", "item " + num);
+        input.setAttribute("class", "table-input");
+        return input;
+      }
+
+      function CreateNotesInput(num) {
+        let input = document.createElement("input");
+        input.setAttribute("name", "notes");
+        input.setAttribute("placeholder", "notes");
+        input.setAttribute("id", "notes " + num);
+        input.setAttribute("class", "table-input");
+        return input;
+      }
+
       for(let i = 0; i < table.children[0].children[0].children.length; i++) {
         row.append(document.createElement("td"));
       }
-      table.append(row)
+      for(let i = 0; i < row.children.length; i++) {
+        if(i === 1) {
+          window["input" + grc] = new CreateNameInput(grc);
+          row.children[i].append(window["input" + grc])
+        }
+        if(i === 2) {
+          window["input" + grc] = new CreatePhoneInput(grc);
+          row.children[i].append(window["input" + grc])
+        }
+        if(i === 3) {
+          window["input" + grc] = new CreateSkuInput(grc);
+          row.children[i].append(window["input" + grc])
+        }
+        if(i === 4) {
+          window["input" + grc] = new CreateItemInput(grc);
+          row.children[i].append(window["input" + grc])
+        }
+        if(i === 5) {
+          window["input" + grc] = new CreateNotesInput(grc);
+          row.children[i].append(window["input" + grc])
+        }
+        if(i === 6) {
+          let addButton = document.createElement("button");
+          addButton.innerHTML = "Add";
+          addButton.setAttribute("onclick", "enterRaincheck(this)");
+          row.children[i].append(addButton)
+        }
+      }
+      row.setAttribute("id", "row " + grc);
+      table.append(row);
+      grc++;
+      element.style.display = "none";
+    }
+
+    //enter new raincheck from add button in table
+
+    function enterRaincheck(element) {
+      let parent = element.parentElement.parentElement;
+      let newName = parent.children[1].children[0].value;
+      let newPhone = parent.children[2].children[0].value*1;
+      let newSku = parent.children[3].children[0].value*1;
+      let newItem = parent.children[4].children[0].value;
+      let newNotes = parent.children[5].children[0].value;
+
+      let newEnter = {
+        name: newName,
+        phone: newPhone,
+        skus: [newSku],
+        items: [newItem],
+        notes: newNotes
+      }
+
+      $.ajax({
+        type: "POST",
+        url: "/enter",
+        data: newEnter,
+        success: function() {
+          window.location.reload(true);
+        },
+        error: function() {
+          alert("error");
+        }
+      })
     }
 
   </script>
