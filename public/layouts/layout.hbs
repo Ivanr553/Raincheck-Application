@@ -245,5 +245,18 @@ function addInputs(){
       })
     }
 
+    //add additional row in table
+    function addRow() {
+      let table = document.getElementById("main-table");
+      let row = document.createElement("tr");
+      function TD() {
+        return document.createElement("td");
+      }
+      for(let i = 0; i < table.children[0].children[0].children.length; i++) {
+        row.append(document.createElement("td"));
+      }
+      table.append(row)
+    }
+
   </script>
 </html>
