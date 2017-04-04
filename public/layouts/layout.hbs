@@ -14,11 +14,14 @@
     }
     table, th, td {
         border: solid 1px black;
-        padding: 0.3vh;
-        font-size: 2vh;
+        padding: 0.5vh;
+        font-size: 2vmin;
         text-align: center;
-        height: 7vh;
+        height: auto;
         background-color: white;
+    }
+    td {
+      width: auto;
     }
     th {
       background-color: rgba(0, 0, 0, 0.07);
@@ -26,10 +29,13 @@
     table {
         margin-left: 1vh;
         margin-top: 2vh;
+        background-color: rgb(230, 230, 230);
     }
     textarea {
-        height: 90%;
+        height: 7vw;
+        width: 20vw;
         resize: none;
+        font-size: 1.8vmin;
     }
     body {
       padding: 0;
@@ -121,6 +127,13 @@
     }
     .notes-cell {
       cursor: pointer;
+    }
+
+    .add-raincheck {
+      margin-top: 0.5vh;
+    }
+    .grey {
+      background-color: rgb(230, 230, 230);
     }
 
     </style>
@@ -352,8 +365,6 @@ function addInputs(){
       let parent = element.parentElement.parentElement;
       let newName = parent.children[1].children[0].value;
       let newPhone = parent.children[2].children[0].value*1;
-      let newSku = parent.children[3].children[0].value*1;
-      let newItem = parent.children[4].children[0].value;
       let newNotes = parent.children[5].children[0].value;
 
       let table = parent.parentElement;
@@ -361,17 +372,16 @@ function addInputs(){
       let newItems = [];
 
 //find skus
-      for(let i = 2; i < table.children.length; i++) {
-        newSkus.push(table.children[i].children[3].children[0]);
-        newItems.push(table.children[i].children[4].children[0]);
+      for(let i = 1; i < table.children.length; i++) {
+        newSkus.push(table.children[i].children[3].children[0].value);
+        newItems.push(table.children[i].children[4].children[0].value);
       }
-      return console.log(newSkus);
 
       let newEnter = {
         name: newName,
         phone: newPhone,
-        skus: [newSku],
-        items: [newItem],
+        skus: newSkus,
+        items: newItems,
         notes: newNotes
       }
 
@@ -394,6 +404,24 @@ function addInputs(){
       let table = document.getElementById("main-table");
       let row = document.createElement("tr");
 
+
+      function CreateSkuInput() {
+        let input = document.createElement("input");
+        input.setAttribute("name", "sku");
+        input.setAttribute("placeholder", "sku");
+        input.setAttribute("class", "table-input");
+        return input;
+      }
+
+      function CreateItemInput() {
+        let input = document.createElement("input");
+        input.setAttribute("name", "item");
+        input.setAttribute("placeholder", "item");
+        input.setAttribute("class", "table-input");
+        return input;
+      }
+
+
       for(let i = 0; i < table.children[0].children[0].children.length+1; i++) {
         if(i === 7) {
           let td = document.createElement("td");
@@ -405,6 +433,23 @@ function addInputs(){
         }
         else {
           row.append(document.createElement("td"));
+        }
+      }
+      for(let i = 0; i < row.children.length; i++) {
+        if(i === 3) {
+          window["input" + i] = new CreateSkuInput();
+          row.children[i].append(window["input" + i])
+        }
+        else if(i === 4) {
+          window["input" + i] = new CreateItemInput();
+          row.children[i].append(window["input" + i])
+        }
+        else {
+          if(i != 7){
+          console.log(i);
+          console.log(row.children[i]);
+          row.children[i].className += "grey";
+          }
         }
       }
       table.append(row)

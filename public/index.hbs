@@ -32,22 +32,4 @@
 </table>
 {{/if}}
 </div>
-<button name="button" onclick="addRow(this)">+</button>
-<br><br>
-
-<h3>Enter Raincheck here:</h3>
-<div class="enter-container">
-<form action="/enter" method="POST" id="enter">
-  <input type="string" name="name" placeholder="name" />
-  <input type="number" name="phone" placeholder="phone number" />
-  <br><br>
-  <span>Items</span>
-  <br>
-  <input type="number" name="skus[0]" placeholder="sku" />
-  <input type="string" name="items[0]" placeholder="item" /><br>
-  <input type="string" name="notes" placeholder="notes"  id="notes"/>
-  <br><button type="submit" id="enterSub">Submit</button>
-</form>
-</div>
-<button name="add" onclick="addInputs()" id="addItem">Add Item</button>
-</div>
+<button name="button" onclick="addRow(this)" class="add-raincheck">Add Raincheck</button>
