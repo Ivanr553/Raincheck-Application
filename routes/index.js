@@ -131,15 +131,6 @@ router.post("/find", (req,res) => {
 */
 router.post("/delete", (req, res) => {
   const postPhone = req.body.phone;
-  /*Enter.find({name: postName}, (err, enter) => {
-    if (err) {res.send(err)};
-    if(enter.length === 0) {
-      res.send("Found none");
-    }
-    else {
-      res.send(enter)
-    }
-  });*/
 
   Enter.findOneAndRemove({phone: postPhone}, (err, enter) => {
     if(err) throw err;
@@ -167,6 +158,14 @@ router.post("/update", (req, res) => {
     })
   })
 });
+
+
+router.get("/apiData", (req, res) => {
+  Enter.find((err, enter) => {
+    if(err) throw err;
+    res.send(JSON.stringify(enter));
+  })
+})
 
 
 router.get("/v3/mail/send", (req, res) => {
