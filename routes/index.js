@@ -165,6 +165,7 @@ router.get("/apiData", (req, res) => {
     if(err) throw err;
     res.send(JSON.stringify(enter));
   })
+  res.send("hello");
 })
 
 
